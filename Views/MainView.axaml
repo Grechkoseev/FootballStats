@@ -1,0 +1,67 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:FootballStats.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FootballStats.Views.MainView"
+             x:DataType="vm:MainViewModel">
+
+  <Design.DataContext>
+    <vm:MainViewModel/>
+  </Design.DataContext>
+
+  <Grid>
+    <TextBlock Text="{Binding SelectedFullName}" />
+    <!--<TextBlock Text="{Binding SearchingText, Mode=TwoWay}"
+               Margin="0, 20, 0, 0"/>-->
+    <StackPanel Background="AntiqueWhite"
+                Orientation="Vertical"
+                Margin="40">
+      <!--<TextBox Text="{Binding SearchingText}"
+               Name="InputField"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               DockPanel.Dock="Top"
+               Margin="0 50 0 0"/>-->
+      <StackPanel Orientation="Horizontal"
+                  HorizontalAlignment="Center">
+        <AutoCompleteBox ItemsSource="{Binding FullnameList}"
+                         SelectedItem="{Binding SelectedFullName}"
+                         VerticalAlignment="Center"
+                         Width="400"
+                         Height="35"
+                         Margin="0 0 10 0"
+                         FilterMode="Contains"
+                         DockPanel.Dock="Left"/>
+        <Button DockPanel.Dock="Right"
+                Command="{Binding GetPlayerStatsCommand}"
+                CommandParameter="{Binding SelectedFullName}"
+                BorderThickness="1"
+                BorderBrush="Black"
+                Height="35">
+          Показать стастику
+        </Button>
+      </StackPanel>
+      <DataGrid Margin="40"
+                ItemsSource="{Binding GetPlayerStatsCommand}"
+                DockPanel.Dock="Bottom"
+                BorderBrush="Black"
+                GridLinesVisibility="All"
+                BorderThickness="1">
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="Колонка 1" />
+          <DataGridTextColumn Header="Колонка 2" />
+          <DataGridTextColumn Header="Колонка 3" />
+          <DataGridTextColumn Header="Колонка 4" />
+          <DataGridTextColumn Header="Колонка 5" />
+          <DataGridTextColumn Header="Колонка 6" />
+          <DataGridTextColumn Header="Колонка 7" />
+          <DataGridTextColumn Header="Колонка 8" />
+          <DataGridTextColumn Header="Колонка 9" />
+          <DataGridTextColumn Header="Колонка 10" />
+        </DataGrid.Columns>
+      </DataGrid>
+    </StackPanel>
+  </Grid>
+</UserControl>
