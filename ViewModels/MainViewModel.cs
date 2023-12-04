@@ -130,15 +130,7 @@ public class MainViewModel : ViewModelBase
         var seasonViewModelList = SeasonModels.Select(seasonModel => new SeasonViewModel(seasonModel)).ToList();
         return seasonViewModelList;
     }
-    private void DoFillList()
-    {
-        MyItems = new List<MyItem>
-        {
-            new MyItem { Name = "Item 1", Value = 10 },
-            new MyItem { Name = "Item 2", Value = 20 },
-            new MyItem { Name = "Item 3", Value = 30 }
-        };
-    }
+
     private List<PlayerStatViewModel> GetPlayerStatViewModels()
     {
         List<PlayerStatViewModel> playerStatsViewModelList = new();
@@ -162,12 +154,5 @@ public class MainViewModel : ViewModelBase
     {
         get => _dataGridViewModel;
         private set => this.RaiseAndSetIfChanged(ref _dataGridViewModel, value);
-    }
-
-    private List<MyItem> _myItems;
-    public List<MyItem> MyItems
-    {
-        get => _myItems;
-        set => this.RaiseAndSetIfChanged(ref _myItems, value);
     }
 }
