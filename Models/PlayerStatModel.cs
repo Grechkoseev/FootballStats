@@ -10,9 +10,6 @@ public class PlayerStatModel
     public int Id { get; set; }
     public int PlayerId { get; set; }
     public int SeasonId { get; set; }
-    public string Lastname { get; set; }
-    public string Firstname { get; set; }
-    public string Middlename { get; set; }
     public int Games { get; set; }
     public int Goals { get; set; }
     public int PenaltyGoals { get; set; }

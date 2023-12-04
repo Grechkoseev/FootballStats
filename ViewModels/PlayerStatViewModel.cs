@@ -1,4 +1,5 @@
-﻿using FootballStats.Models;
+﻿using System;
+using FootballStats.Models;
 
 namespace FootballStats.ViewModels;
 
@@ -13,7 +14,6 @@ public class PlayerStatViewModel : ViewModelBase
     }
 
     public string Season => $"{_season.Start_season}-{_season.End_season} {_season.Year}";
-    public string Fullname => $"{_playerStat.Lastname} {_playerStat.Firstname} {_playerStat.Middlename}";
     public int Games => _playerStat.Games;
     public int Goals => _playerStat.Goals;
     public int PenaltyGoals => _playerStat.PenaltyGoals;
@@ -23,7 +23,8 @@ public class PlayerStatViewModel : ViewModelBase
         {
             if (_playerStat.Games != 0)
             {
-                return _playerStat.Goals / _playerStat.Games;
+                var result = (float)_playerStat.Goals / _playerStat.Games;
+                return (float)Math.Round(result, 2);
             }
 
             return 0;
@@ -36,7 +37,8 @@ public class PlayerStatViewModel : ViewModelBase
         {
             if (_playerStat.Games != 0)
             {
-                return _playerStat.Assists / _playerStat.Games;
+                var result = (float)_playerStat.Assists / _playerStat.Games;
+                return (float)Math.Round(result, 2);
             }
 
             return 0;

@@ -11,21 +11,35 @@ namespace FootballStats.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {
-    public const string ButtonName = "Показать статистику";
-
     public MainViewModel()
     {
         Initialize();
+        GetPlayerStatsCommand = new RelayCommand(async () =>
+        {
+            var playerId = GetPlayerIdFromFullName();
+            var playerStats = await GetPlayerStatModelsAsync(playerId);
+            PlayerStatModels = playerStats;
+            PlayerStatViewModel = GetPlayerStatViewModels();
+        });
     }
 
     private async void Initialize()
     {
+        ButtonName = "Показать статистику";
         PlayerModels = await GetPlayerModelsAsync();
         PlayersViewModels = GetPlayersViewModel();
         FullnameList = GetFullnameList(PlayersViewModels);
         SeasonModels = await GetSeasonModelsAsync();
         SeasonViewModel = GetSeasonsViewModels();
-        GetPlayerStatsCommand = new RelayCommand(async PlayerStatViewModel => await GetPlayerStatModelsAsync(GetPlayerIdFromFullName()));
+        DataGridViewModel = new();
+        PlayerStatViewModel = new();
+    }
+
+    private string _buttonName;
+    public string ButtonName
+    {
+        get => _buttonName;
+        set => this.RaiseAndSetIfChanged(ref _buttonName, value);
     }
 
     private List<SeasonModel> _seasonModels;
@@ -116,6 +130,15 @@ public class MainViewModel : ViewModelBase
         var seasonViewModelList = SeasonModels.Select(seasonModel => new SeasonViewModel(seasonModel)).ToList();
         return seasonViewModelList;
     }
+    private void DoFillList()
+    {
+        MyItems = new List<MyItem>
+        {
+            new MyItem { Name = "Item 1", Value = 10 },
+            new MyItem { Name = "Item 2", Value = 20 },
+            new MyItem { Name = "Item 3", Value = 30 }
+        };
+    }
     private List<PlayerStatViewModel> GetPlayerStatViewModels()
     {
         List<PlayerStatViewModel> playerStatsViewModelList = new();
@@ -133,5 +156,18 @@ public class MainViewModel : ViewModelBase
     {
         return PlayerModels.Where(playerModel => SelectedFullName == playerModel.Fullname).Select(playerModel => playerModel.Id).FirstOrDefault();
     }
-    public RelayCommand GetPlayerStatsCommand { get; set; }
+    public ICommand GetPlayerStatsCommand { get; }
+    private DataGridViewModel _dataGridViewModel;
+    public DataGridViewModel DataGridViewModel
+    {
+        get => _dataGridViewModel;
+        private set => this.RaiseAndSetIfChanged(ref _dataGridViewModel, value);
+    }
+
+    private List<MyItem> _myItems;
+    public List<MyItem> MyItems
+    {
+        get => _myItems;
+        set => this.RaiseAndSetIfChanged(ref _myItems, value);
+    }
 }

@@ -12,19 +12,11 @@
   </Design.DataContext>
 
   <Grid>
-    <TextBlock Text="{Binding SelectedFullName}" />
-    <!--<TextBlock Text="{Binding SearchingText, Mode=TwoWay}"
-               Margin="0, 20, 0, 0"/>-->
     <StackPanel Background="AntiqueWhite"
                 Orientation="Vertical"
-                Margin="40">
-      <!--<TextBox Text="{Binding SearchingText}"
-               Name="InputField"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               DockPanel.Dock="Top"
-               Margin="0 50 0 0"/>-->
+                Margin="20">
       <StackPanel Orientation="Horizontal"
+                  Margin="20"
                   HorizontalAlignment="Center">
         <AutoCompleteBox ItemsSource="{Binding FullnameList}"
                          SelectedItem="{Binding SelectedFullName}"
@@ -39,28 +31,52 @@
                 CommandParameter="{Binding SelectedFullName}"
                 BorderThickness="1"
                 BorderBrush="Black"
-                Height="35">
-          Показать стастику
+                Height="35"
+                Content="{Binding ButtonName}">
         </Button>
       </StackPanel>
-      <DataGrid Margin="40"
-                ItemsSource="{Binding GetPlayerStatsCommand}"
-                DockPanel.Dock="Bottom"
-                BorderBrush="Black"
-                GridLinesVisibility="All"
-                BorderThickness="1">
-        <DataGrid.Columns>
-          <DataGridTextColumn Header="Колонка 1" />
-          <DataGridTextColumn Header="Колонка 2" />
-          <DataGridTextColumn Header="Колонка 3" />
-          <DataGridTextColumn Header="Колонка 4" />
-          <DataGridTextColumn Header="Колонка 5" />
-          <DataGridTextColumn Header="Колонка 6" />
-          <DataGridTextColumn Header="Колонка 7" />
-          <DataGridTextColumn Header="Колонка 8" />
-          <DataGridTextColumn Header="Колонка 9" />
-          <DataGridTextColumn Header="Колонка 10" />
-        </DataGrid.Columns>
+
+      <DataGrid Margin="40 10 40 0"
+          ItemsSource="{Binding PlayerStatViewModel}"
+          DockPanel.Dock="Bottom">
+          <DataGrid.Styles>
+              <Style Selector="DataGrid">
+                  <Setter Property="BorderBrush" Value="Black"></Setter>
+                  <Setter Property="BorderThickness" Value="1"></Setter>
+                  <Setter Property="RowBackground" Value="Beige"></Setter>
+                  <Setter Property="GridLinesVisibility" Value="All"></Setter>
+                  <Setter Property="Height" Value="350"></Setter>
+                  <Setter Property="CanUserResizeColumns" Value="True"></Setter>
+              </Style>
+              <Style Selector="DataGridRow">
+                  <Setter Property="BorderBrush" Value="Black"></Setter>
+              </Style>
+              <Style Selector="DataGridColumnHeader">
+                  <Setter Property="Foreground" Value="Black"></Setter>
+              </Style>
+          </DataGrid.Styles>
+          <DataGrid.Columns>
+              <DataGridTextColumn Header="{Binding DataGridViewModel.Season}" 
+                                  Binding="{Binding Season}"/>
+              <DataGridTextColumn Header="{Binding DataGridViewModel.Games}" 
+                                  Binding="{Binding Games}"/>
+              <DataGridTextColumn Header="{Binding DataGridViewModel.Goals}" 
+                                  Binding="{Binding Goals}"/>
+              <DataGridTextColumn Header="{Binding DataGridViewModel.Penalties}" 
+                                  Binding="{Binding PenaltyGoals}"/>
+              <DataGridTextColumn Header="{Binding DataGridViewModel.AverageGoals}"
+                                  Binding="{Binding AverageGoals}"/>
+              <DataGridTextColumn Header="{Binding DataGridViewModel.Assists}"
+                                  Binding="{Binding Assists}"/>
+              <DataGridTextColumn Header="{Binding DataGridViewModel.AverageAssists}"
+                                  Binding="{Binding AverageAssists}"/>
+              <DataGridTextColumn Header="{Binding DataGridViewModel.YellowCards}"
+                                  Binding="{Binding YellowCards}"/>
+              <DataGridTextColumn Header="{Binding DataGridViewModel.RedCards}"
+                                  Binding="{Binding RedCards}"/>
+              <DataGridTextColumn Header="{Binding DataGridViewModel.ManOfTheMatch}"
+                                  Binding="{Binding ManOfTheMatch}"/>
+          </DataGrid.Columns>
       </DataGrid>
     </StackPanel>
   </Grid>
