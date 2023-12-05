@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FootballStats.Models;
 
 namespace FootballStats.ViewModels;
@@ -47,4 +48,9 @@ public class PlayerStatViewModel : ViewModelBase
     public int YellowCards => _playerStat.YellowCards;
     public int RedCards => _playerStat.RedCards;
     public int ManOfTheMatch => _playerStat.ManOfTheMatch;
+
+    public static readonly List<string> SeasonList = new()
+    {
+        "Осень-Зима", "Лето-Осень", "Весна-Лето", "Зима-Весна"
+    };
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -6,6 +7,7 @@ using FootballStats.Commands;
 using FootballStats.Database;
 using FootballStats.Models;
 using ReactiveUI;
+using FootballStats.ViewModels;
 
 namespace FootballStats.ViewModels;
 
@@ -142,7 +144,8 @@ public class MainViewModel : ViewModelBase
                 select new PlayerStatViewModel(playerStatModel, seasonModel));
         }
 
-        return playerStatsViewModelList;
+        var sortedPlayerStatsViewModelList = SortPlayerStatViewModels(playerStatsViewModelList);
+        return sortedPlayerStatsViewModelList;
     }
     private int GetPlayerIdFromFullName()
     {
@@ -154,5 +157,11 @@ public class MainViewModel : ViewModelBase
     {
         get => _dataGridViewModel;
         private set => this.RaiseAndSetIfChanged(ref _dataGridViewModel, value);
+    }
+    private static List<PlayerStatViewModel> SortPlayerStatViewModels(List<PlayerStatViewModel> playerStatViewModels)
+    {
+        return playerStatViewModels.OrderByDescending(x => int.Parse(x.Season.Split(' ')[1]))
+            .ThenBy(x => ViewModels.PlayerStatViewModel.SeasonList.IndexOf(x.Season.Split(' ')[0]))
+            .ToList();
     }
 }

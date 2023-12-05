@@ -8,7 +8,8 @@
         x:Class="FootballStats.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="FootballStats"
-        Width="1000"
+        MinWidth="1500"
+        Width="1500"
         Height="500">
         <views:MainView />
 </Window>

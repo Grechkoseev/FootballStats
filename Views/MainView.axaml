@@ -35,48 +35,53 @@
                 Content="{Binding ButtonName}">
         </Button>
       </StackPanel>
-
       <DataGrid Margin="40 10 40 0"
-          ItemsSource="{Binding PlayerStatViewModel}"
-          DockPanel.Dock="Bottom">
-          <DataGrid.Styles>
-              <Style Selector="DataGrid">
-                  <Setter Property="BorderBrush" Value="Black"></Setter>
-                  <Setter Property="BorderThickness" Value="1"></Setter>
-                  <Setter Property="RowBackground" Value="Beige"></Setter>
-                  <Setter Property="GridLinesVisibility" Value="All"></Setter>
-                  <Setter Property="Height" Value="350"></Setter>
-                  <Setter Property="CanUserResizeColumns" Value="True"></Setter>
-              </Style>
-              <Style Selector="DataGridRow">
-                  <Setter Property="BorderBrush" Value="Black"></Setter>
-              </Style>
-              <Style Selector="DataGridColumnHeader">
-                  <Setter Property="Foreground" Value="Black"></Setter>
-              </Style>
-          </DataGrid.Styles>
-          <DataGrid.Columns>
-              <DataGridTextColumn Header="{Binding DataGridViewModel.Season}" 
-                                  Binding="{Binding Season}"/>
-              <DataGridTextColumn Header="{Binding DataGridViewModel.Games}" 
-                                  Binding="{Binding Games}"/>
-              <DataGridTextColumn Header="{Binding DataGridViewModel.Goals}" 
-                                  Binding="{Binding Goals}"/>
-              <DataGridTextColumn Header="{Binding DataGridViewModel.Penalties}" 
-                                  Binding="{Binding PenaltyGoals}"/>
-              <DataGridTextColumn Header="{Binding DataGridViewModel.AverageGoals}"
-                                  Binding="{Binding AverageGoals}"/>
-              <DataGridTextColumn Header="{Binding DataGridViewModel.Assists}"
-                                  Binding="{Binding Assists}"/>
-              <DataGridTextColumn Header="{Binding DataGridViewModel.AverageAssists}"
-                                  Binding="{Binding AverageAssists}"/>
-              <DataGridTextColumn Header="{Binding DataGridViewModel.YellowCards}"
-                                  Binding="{Binding YellowCards}"/>
-              <DataGridTextColumn Header="{Binding DataGridViewModel.RedCards}"
-                                  Binding="{Binding RedCards}"/>
-              <DataGridTextColumn Header="{Binding DataGridViewModel.ManOfTheMatch}"
-                                  Binding="{Binding ManOfTheMatch}"/>
-          </DataGrid.Columns>
+                ItemsSource="{Binding PlayerStatViewModel}"
+                DockPanel.Dock="Bottom">
+        <DataGrid.Styles>
+          <Style Selector="DataGrid">
+            <Setter Property="BorderBrush" Value="Black"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="RowBackground" Value="Beige"></Setter>
+            <Setter Property="GridLinesVisibility" Value="All"></Setter>
+            <Setter Property="MinHeight" Value="350"></Setter>
+            <Setter Property="CanUserResizeColumns" Value="True"></Setter>
+            <Setter Property="VerticalGridLinesBrush" Value="Black"></Setter>
+            <Setter Property="HorizontalGridLinesBrush" Value="Black"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+          </Style>
+          <Style Selector="DataGridRow">
+            <Setter Property="BorderBrush" Value="Black"></Setter>
+          </Style>
+          <Style Selector="DataGridColumnHeader">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="SeparatorBrush" Value="Black" />
+            <Setter Property="FontStyle" Value="Normal" />
+          </Style>
+        </DataGrid.Styles>
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="{Binding DataGridViewModel.Season}"
+                              Binding="{Binding Season}"/>
+          <DataGridTextColumn Header="{Binding DataGridViewModel.Games}"
+                              Binding="{Binding Games}"/>
+          <DataGridTextColumn Header="{Binding DataGridViewModel.Goals}"
+                              Binding="{Binding Goals}"/>
+          <DataGridTextColumn Header="{Binding DataGridViewModel.Penalties}"
+                              Binding="{Binding PenaltyGoals}"/>
+          <DataGridTextColumn Header="{Binding DataGridViewModel.AverageGoals}"
+                              Binding="{Binding AverageGoals}"/>
+          <DataGridTextColumn Header="{Binding DataGridViewModel.Assists}"
+                              Binding="{Binding Assists}"/>
+          <DataGridTextColumn Header="{Binding DataGridViewModel.AverageAssists}"
+                              Binding="{Binding AverageAssists}"/>
+          <DataGridTextColumn Header="{Binding DataGridViewModel.YellowCards}"
+                              Binding="{Binding YellowCards}"/>
+          <DataGridTextColumn Header="{Binding DataGridViewModel.RedCards}"
+                              Binding="{Binding RedCards}"/>
+          <DataGridTextColumn Header="{Binding DataGridViewModel.ManOfTheMatch}"
+                              Binding="{Binding ManOfTheMatch}"/>
+        </DataGrid.Columns>
       </DataGrid>
     </StackPanel>
   </Grid>
